@@ -16,11 +16,12 @@ namespace WebFastFoodRestaurantApp.Services
         {
             _context = context;
         }
-        public bool Create(string name, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount)
+        public bool Create(string name, string description, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount)
         {
             Product item = new Product
             {
                 ProductName = name,
+                Description = description,
                 Brand = _context.Brands.Find(brandId),
                 Category = _context.Categories.Find(categoryId),
 
@@ -74,7 +75,7 @@ namespace WebFastFoodRestaurantApp.Services
                 }
                 return products;
             }
-            public bool Update(int productId, string name, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount)
+            public bool Update(int productId, string name,  string description, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount)
             {
                 var product = GetProductById(productId);
                 if(product == default(Product))
@@ -82,6 +83,7 @@ namespace WebFastFoodRestaurantApp.Services
                     return false;
                 }
                 product.ProductName = name;
+            product.Description = description;
 
                 //TO DO
 
@@ -90,7 +92,6 @@ namespace WebFastFoodRestaurantApp.Services
 
                 product.Brand = _context.Brands.Find(brandId);
                 product.Category = _context.Categories.Find(categoryId);
-
                 product.Picture = picture;
                 product.Quantity = quantity;
                 product.Price = price;

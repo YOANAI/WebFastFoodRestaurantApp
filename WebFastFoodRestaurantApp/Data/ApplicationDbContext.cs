@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using WebFastFoodRestaurantApp.Domain;
+using WebFastFoodRestaurantApp.Models.Product;
 
 namespace WebFastFoodRestaurantApp.Data
 {
@@ -18,6 +19,9 @@ namespace WebFastFoodRestaurantApp.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<WebFastFoodRestaurantApp.Models.Product.ProductCreateVM> ProductCreateVM { get; set; }
+        public DbSet<WebFastFoodRestaurantApp.Models.Product.ProductIndexVM> ProductIndexVM { get; set; }
+        public DbSet<WebFastFoodRestaurantApp.Models.Product.ProductEditVM> ProductEditVM { get; set; }
 
     }
 }

@@ -20,21 +20,34 @@ namespace WebFastFoodRestaurantApp.Infrastructure
 
             await RoleSeeder(services);
             await SeedAdministrator(services);
-            return app;
+            
 
 
             var dataCategory = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             SeedCategories(dataCategory);
 
             var dataBrand = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            SeedCategories(dataBrand);
-
-
-
+            SeedBrands(dataBrand);
             return app;
         }
         
 
+        public static void SeedBrands(ApplicationDbContext dataBrand)
+        {
+            if (dataBrand.Brands.Any())
+            {
+                return;
+            }
+            dataBrand.Brands.AddRange(new[]
+            {
+                new Brand{BrandName="Вегетарианско"},
+                new Brand{BrandName="Месно"},
+                new Brand{BrandName="Здравословни"},
+                new Brand{BrandName="Детско"}
+
+            });
+            dataBrand.SaveChanges();
+        }
         private static void SeedCategories(ApplicationDbContext dataCategory)
         {
             if (dataCategory.Categories.Any())
@@ -52,25 +65,8 @@ namespace WebFastFoodRestaurantApp.Infrastructure
             dataCategory.SaveChanges();
         }
 
-        private static void SeedBrands(ApplicationDbContext dataBrand)
-        {
-            if (dataBrand.Brands.Any())
-            {
-                return;
-            }
-            dataBrand.Brands.AddRange(new[]
-            {
-                new Brand{BrandName="Вегетарианско"},
-                new Brand{BrandName="Месно"},
-                new Brand{BrandName="Здравословни"},
-                new Brand{BrandName="Детско"}
 
-            });
-            dataBrand.SaveChanges();
-        }
-
-
-            private static async Task RoleSeeder(IServiceProvider serviceProder)
+        private static async Task RoleSeeder(IServiceProvider serviceProder)
             {
                 var roleManager = serviceProder.GetRequiredService<RoleManager<IdentityRole>>();
 

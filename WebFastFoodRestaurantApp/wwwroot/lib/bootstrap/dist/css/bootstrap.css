@@ -4169,7 +4169,7 @@ input[type="button"].btn-block {
   justify-content: space-between;
 }
 
-.navbar-brand {
+.navbar-TypeFood {
   display: inline-block;
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
@@ -4179,7 +4179,7 @@ input[type="button"].btn-block {
   white-space: nowrap;
 }
 
-.navbar-brand:hover, .navbar-brand:focus {
+.navbar-TypeFood:hover, .navbar-TypeFood:focus {
   text-decoration: none;
 }
 
@@ -4453,11 +4453,11 @@ input[type="button"].btn-block {
   display: none;
 }
 
-.navbar-light .navbar-brand {
+.navbar-light .navbar-TypeFood {
   color: rgba(0, 0, 0, 0.9);
 }
 
-.navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
+.navbar-light .navbar-TypeFood:hover, .navbar-light .navbar-TypeFood:focus {
   color: rgba(0, 0, 0, 0.9);
 }
 
@@ -4501,11 +4501,11 @@ input[type="button"].btn-block {
   color: rgba(0, 0, 0, 0.9);
 }
 
-.navbar-dark .navbar-brand {
+.navbar-dark .navbar-TypeFood {
   color: #fff;
 }
 
-.navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
+.navbar-dark .navbar-TypeFood:hover, .navbar-dark .navbar-TypeFood:focus {
   color: #fff;
 }
 

@@ -10,7 +10,7 @@ namespace WebFastFoodRestaurantApp.Models.Category
     {
         public int Id { get; set; }
 
-        [Display(Name = "Brand")]
+        [Display(Name = "TypeFood")]
 
         public string Name { get; set; }
     }

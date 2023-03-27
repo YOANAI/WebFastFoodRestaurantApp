@@ -1,0 +1,50 @@
+﻿@model WebFastFoodRestaurantApp.Models.Order.OrderConfirmVM
+
+@{
+    ViewData["Title"] = "Confirm";
+}
+
+
+<form asp-controller="Order" asp-action="Create" method="post">
+    <div class="row">
+        <div class="col">
+            <div>
+                <a asp-action="Index"><img src="/images/arrow.png" alt="arow" width="50" /></a>
+            </div>
+        </div>
+        <div class="col mb-3">
+            <h1>Order Confirmation</h1>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-img"><img src="@Html.DisplayFor(model=>model.Picture)" alt="Image" width="400" /></div>
+            </div>
+
+            <div class="col-md-6">
+                <h1 class="card-title">@Html.DisplayFor(model => model.ProductName)</h1>
+
+                <div>
+                    <h3>BGN @Html.DisplayFor(model => model.Price)</h3>
+                </div>
+                <div>
+                    <p style="font-size:20px">Quantity: @Html.DisplayFor(model => model.Quantity)</p>
+                    <p style="font-size:20px">Discount: @Html.DisplayFor(model => model.Discount) %</p>
+                    <p style="font-size:20px">Total: BGN @Html.DisplayFor(model => model.TotalPrice)</p>
+                </div>
+                <div>
+                    <img src="~/images/confirm.png" width="50" /><input type="submit" value="Confirm" class="btn btn-n" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" asp-for="ProductId" value="@Model.ProductId" />
+    <input type="hidden" asp-for="Quantity" value="@Model.Quantity" />
+    <input type="hidden" asp-for="UserId" value="@Model.UserId" />
+    <input type="hidden" asp-for="Price" value="@Model.Price" />
+    <input type="hidden" asp-for="Discount" value="@Model.Discount" />
+</form>

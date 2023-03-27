@@ -16,13 +16,13 @@ namespace WebFastFoodRestaurantApp.Services
         {
             _context = context;
         }
-        public bool Create(string name, string description, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount)
+        public bool Create(string name, string description, int TypeFoodId, int categoryId, string picture, int quantity, decimal price, decimal discount)
         {
             Product item = new Product
             {
                 ProductName = name,
                 Description = description,
-                Brand = _context.Brands.Find(brandId),
+                TypeFood = _context.TypeFoods.Find(TypeFoodId),
                 Category = _context.Categories.Find(categoryId),
 
                 Picture = picture,
@@ -57,25 +57,25 @@ namespace WebFastFoodRestaurantApp.Services
                 _context.Remove(product);
                 return _context.SaveChanges() != 0;
             }
-            public List<Product> GetProducts(string searchStringCategoryName, string searchStringBrandName)
+            public List<Product> GetProducts(string searchStringCategoryName, string searchStringTypeFoodName)
             {
                 List<Product> products = _context.Products.ToList();
-                if (!String.IsNullOrEmpty(searchStringCategoryName) && !String.IsNullOrEmpty(searchStringBrandName))
+                if (!String.IsNullOrEmpty(searchStringCategoryName) && !String.IsNullOrEmpty(searchStringTypeFoodName))
                 {
                     products = products.Where(x => x.Category.CategoryName.ToLower().Contains(searchStringCategoryName.ToLower())
-                    && x.Brand.BrandName.ToLower().Contains(searchStringBrandName.ToLower())).ToList();
+                    && x.TypeFood.TypeFoodName.ToLower().Contains(searchStringTypeFoodName.ToLower())).ToList();
                 }
                 else if (!String.IsNullOrEmpty(searchStringCategoryName))
                 {
                     products = products.Where(x => x.Category.CategoryName.ToLower().Contains(searchStringCategoryName.ToLower())).ToList();
                 }
-                else if (!String.IsNullOrEmpty(searchStringBrandName))
+                else if (!String.IsNullOrEmpty(searchStringTypeFoodName))
                 {
-                    products = products.Where(x => x.Brand.BrandName.ToLower().Contains(searchStringBrandName.ToLower())).ToList();
+                    products = products.Where(x => x.TypeFood.TypeFoodName.ToLower().Contains(searchStringTypeFoodName.ToLower())).ToList();
                 }
                 return products;
             }
-            public bool Update(int productId, string name,  string description, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount)
+            public bool Update(int productId, string name,  string description, int TypeFoodId, int categoryId, string picture, int quantity, decimal price, decimal discount)
             {
                 var product = GetProductById(productId);
                 if(product == default(Product))
@@ -87,10 +87,10 @@ namespace WebFastFoodRestaurantApp.Services
 
                 //TO DO
 
-                //product.BrandId = brandId;
+                //product.TypeFoodId = TypeFoodId;
                 //product.CategoryId = categoryId;
 
-                product.Brand = _context.Brands.Find(brandId);
+                product.TypeFood = _context.TypeFoods.Find(TypeFoodId);
                 product.Category = _context.Categories.Find(categoryId);
                 product.Picture = picture;
                 product.Quantity = quantity;

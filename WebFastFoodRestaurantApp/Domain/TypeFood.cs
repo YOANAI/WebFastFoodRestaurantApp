@@ -6,10 +6,10 @@ using WebFastFoodRestaurantApp.Domain;
 
 namespace WebFastFoodRestaurantApp.Domain
 {
-    public class Brand
+    public class TypeFood
     {
         public int Id { get; set; }
-        public string BrandName { get; set; }
+        public string TypeFoodName { get; set; }
         public virtual IEnumerable<Product> Products { get; set; } = new List<Product>();
     }
 }

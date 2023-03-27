@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebFastFoodRestaurantApp.Models.Brand
+namespace WebFastFoodRestaurantApp.Models.TypeFood
 {
-    public class BrandPairVM
+    public class TypeFoodPairVM
     {
         public int Id { get; set; }
 
-        [Display(Name = "Brand")]
+        [Display(Name = "TypeFood")]
 
         public string Name { get; set; }
     }

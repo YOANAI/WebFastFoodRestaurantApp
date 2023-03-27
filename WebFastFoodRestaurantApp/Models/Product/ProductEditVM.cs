@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using WebFastFoodRestaurantApp.Models.Brand;
+using WebFastFoodRestaurantApp.Models.TypeFood;
 using WebFastFoodRestaurantApp.Models.Category;
 
 namespace WebFastFoodRestaurantApp.Models.Product
@@ -12,7 +12,7 @@ namespace WebFastFoodRestaurantApp.Models.Product
     {
         public ProductEditVM()
         {
-            Brands = new List<BrandPairVM>();
+            TypeFoods = new List<TypeFoodPairVM>();
             Categories = new List<CategoryPairVM>();
         }
         [Key]
@@ -22,9 +22,12 @@ namespace WebFastFoodRestaurantApp.Models.Product
         [Display(Name = "Product Name")]
         public string ProductName { get; set; }
         [Required]
-        [Display(Name = "Brand")]
-        public int BrandId { get; set; }
-        public virtual List<BrandPairVM> Brands { get; set; }
+        [Display(Name = "Description")]
+        public string Description { get; set; }
+        [Required]
+        [Display(Name = "TypeFood")]
+        public int TypeFoodId { get; set; }
+        public virtual List<TypeFoodPairVM> TypeFoods { get; set; }
         [Required]
         [Display(Name = "Category")]
         public int CategoryId { get; set; }

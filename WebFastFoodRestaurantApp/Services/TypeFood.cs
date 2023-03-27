@@ -8,28 +8,28 @@ using WebFastFoodRestaurantApp.Data;
 
 namespace WebFastFoodRestaurantApp.Services
 {
-    public class BrandService:IBrandService
+    public class TypeFoodService:ITypeFoodService
     {
         private readonly ApplicationDbContext _context;
          
-        public BrandService(ApplicationDbContext context)
+        public TypeFoodService(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public Brand GetBrandById(int brandId)
+        public TypeFood GetTypeFoodById(int TypeFoodId)
         {
-            return _context.Brands.Find(brandId);
+            return _context.TypeFoods.Find(TypeFoodId);
         }
-        public List<Brand> GetBrands()
+        public List<TypeFood> GetTypeFoods()
         {
-            List<Brand> brands = _context.Brands.ToList();
-            return brands;
+            List<TypeFood> TypeFoods = _context.TypeFoods.ToList();
+            return TypeFoods;
         }
-        public List<Product> GetProductsByBrand(int brandId)
+        public List<Product> GetProductsByTypeFood(int TypeFoodId)
         {
             return _context.Products
-                .Where(x=>x.BrandId== brandId)
+                .Where(x=>x.TypeFoodId== TypeFoodId)
                 .ToList();
         }
     }

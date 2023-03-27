@@ -26,27 +26,27 @@ namespace WebFastFoodRestaurantApp.Infrastructure
             var dataCategory = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             SeedCategories(dataCategory);
 
-            var dataBrand = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            SeedBrands(dataBrand);
+            var dataTypeFood = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            SeedTypeFoods(dataTypeFood);
             return app;
         }
         
 
-        public static void SeedBrands(ApplicationDbContext dataBrand)
+        public static void SeedTypeFoods(ApplicationDbContext dataTypeFood)
         {
-            if (dataBrand.Brands.Any())
+            if (dataTypeFood.TypeFoods.Any())
             {
                 return;
             }
-            dataBrand.Brands.AddRange(new[]
+            dataTypeFood.TypeFoods.AddRange(new[]
             {
-                new Brand{BrandName="Вегетарианско"},
-                new Brand{BrandName="Месно"},
-                new Brand{BrandName="Здравословни"},
-                new Brand{BrandName="Детско"}
+                new TypeFood{TypeFoodName="Vegeterians"},
+                new TypeFood{TypeFoodName="Meat"},
+                new TypeFood{TypeFoodName="Healthy"},
+                new TypeFood{TypeFoodName="Childish"}
 
             });
-            dataBrand.SaveChanges();
+            dataTypeFood.SaveChanges();
         }
         private static void SeedCategories(ApplicationDbContext dataCategory)
         {
@@ -56,10 +56,10 @@ namespace WebFastFoodRestaurantApp.Infrastructure
             }
             dataCategory.Categories.AddRange(new[]
             {
-                new Category{CategoryName="Салати"},
-                new Category{CategoryName="Скара"},
-                new Category{CategoryName="Десерти"},
-                new Category{CategoryName="Напитки"}
+                new Category{CategoryName="Salads"},
+                new Category{CategoryName="Grilled"},
+                new Category{CategoryName="Desserts"},
+                new Category{CategoryName="Drinks"}
 
             });
             dataCategory.SaveChanges();

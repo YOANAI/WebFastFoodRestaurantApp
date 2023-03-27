@@ -6,10 +6,10 @@ using WebFastFoodRestaurantApp.Domain;
 
 namespace WebFastFoodRestaurantApp.Abstraction
 {
-    public interface IBrandService
+    public interface ITypeFoodService
     {
-        List<Brand> GetBrands();
-        Brand GetBrandById(int brandId);
-        List<Product> GetProductsByBrand(int brandId);
+        List<TypeFood> GetTypeFoods();
+        TypeFood GetTypeFoodById(int TypeFoodId);
+        List<Product> GetProductsByTypeFood(int TypeFoodId);
     }
 }

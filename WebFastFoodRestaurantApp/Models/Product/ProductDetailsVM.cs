@@ -4,31 +4,31 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebFastFoodRestaurantApp.Domain
+namespace WebFastFoodRestaurantApp.Models.Product
 {
-    public class Product
+    public class ProductDetailsVM
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int Id { get; set; }
-        [Required]
-        [MaxLength(30)]
+        [Display(Name = "ProductName")]
         public string ProductName { get; set; }
-        
+        [Required]
+        [Display(Name = "Description")]
         public string Description { get; set; }
         public int TypeFoodId { get; set; }
-        public virtual TypeFood TypeFood { get; set; }
+        [Display(Name = "TypeFood")]
+        public string TypeFoodName { get; set; }
         public int CategoryId { get; set; }
-        public virtual Category Category { get; set; }
+        [Display(Name = "Category")]
+        public string CategoryName { get; set; }
+        [Display(Name = "Picture")]
         public string Picture { get; set; }
-        [Required]
-        [Range(0, 5000)]
+        [Display(Name = "Quantity")]
         public int Quantity { get; set; }
-        [Required]
-        [Range(0,1000)]
+        [Display(Name = "Price")]
         public decimal Price { get; set; }
-        [Range(0, 100)]
+        [Display(Name = "Discount")]
         public decimal Discount { get; set; }
-
-        public virtual IEnumerable<Order> Orders { get; set; } = new List<Order>();
     }
+
 }

@@ -1,17 +1,19 @@
 ﻿@model IEnumerable<WebFastFoodRestaurantApp.Models.Product.ProductIndexVM>
-
+@using WebFastFoodRestaurantApp.Models.Order
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 <form asp-controller="Product" asp-action="Index" method="get">
     <p>
-        Brand: <input type="text" name="SearchStringBrandName" />
+        TypeFood: <input type="text" name="SearchStringTypeFoodName" />
         Category: <input type="text" name="SearchStringCategoryName" />
 
         <input type="submit" value="Filter" />
@@ -28,7 +30,7 @@
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.BrandName)
+                @Html.DisplayNameFor(model => model.TypeFoodName)
             </th>
 
             <th>
@@ -46,6 +48,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Discount)
             </th>
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                <th>
+                    Order
+                </th>
+            }
             <th></th>
         </tr>
     </thead>
@@ -60,7 +68,7 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BrandName)
+                    @Html.DisplayFor(modelItem => item.TypeFoodName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CategoryName)
@@ -76,12 +84,27 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Discount)
+                    @Html.DisplayFor(modelItem => item.Discount) %
                 </td>
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <td>
+                        @await Html.PartialAsync("_OrderPartialView", new OrderConfirmVM
+                   {
+                       ProductId = item.Id
+                   })
+                    </td>
+                }
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    }
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
                 </td>
             </tr>
         }

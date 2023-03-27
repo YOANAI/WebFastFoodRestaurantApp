@@ -9,11 +9,11 @@ namespace WebFastFoodRestaurantApp.Abstraction
 {
     public interface IProductService
     {
-        bool Create(string name, string description, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount);
-        bool Update(int productId, string name, string description, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount);
+        bool Create(string name, string description, int TypeFoodId, int categoryId, string picture, int quantity, decimal price, decimal discount);
+        bool Update(int productId, string name, string description, int TypeFoodId, int categoryId, string picture, int quantity, decimal price, decimal discount);
         List<Product> GetProducts();
         Product GetProductById(int productId);
         bool RemoveById(int dogproductId);
-        List<Product> GetProducts(string searchStringCategoryName, string searchStringBrandName);
+        List<Product> GetProducts(string searchStringCategoryName, string searchStringTypeFoodName);
     }
 }

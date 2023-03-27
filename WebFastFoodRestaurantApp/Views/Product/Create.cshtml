@@ -24,14 +24,14 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BrandId" class="control-label"></label>
-                <select asp-for="BrandId" class="form-control text-center">
-                    @foreach (var brand in Model.Brands)
+                <label asp-for="TypeFoodId" class="control-label"></label>
+                <select asp-for="TypeFoodId" class="form-control text-center">
+                    @foreach (var TypeFood in Model.TypeFoods)
                     {
-                        <option value="@brand.Id">@brand.Name</option>
+                        <option value="@TypeFood.Id">@TypeFood.Name</option>
                     }
                 </select>
-                <span asp-validation-for="BrandId" class="text-danger"></span>
+                <span asp-validation-for="TypeFoodId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>

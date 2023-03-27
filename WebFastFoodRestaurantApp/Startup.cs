@@ -40,7 +40,8 @@ namespace WebFastFoodRestaurantApp
             services.AddTransient<IProductService, ProductService>();
 
             services.AddTransient<ICategoryService, CategoryService>();
-            services.AddTransient<IBrandService, BrandService>();
+            services.AddTransient<ITypeFoodService, TypeFoodService>();
+            services.AddTransient<IStatisticsService, StatisticsService>();
 
             services.Configure<IdentityOptions>(option =>
             {

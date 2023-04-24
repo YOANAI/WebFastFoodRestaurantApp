@@ -13,7 +13,7 @@ namespace WebFastFoodRestaurantApp.Abstraction
         bool Update(int productId, string name, string description, int TypeFoodId, int categoryId, string picture, int quantity, decimal price, decimal discount);
         List<Product> GetProducts();
         Product GetProductById(int productId);
-        bool RemoveById(int dogproductId);
+        bool RemoveById(int productId);
         List<Product> GetProducts(string searchStringCategoryName, string searchStringTypeFoodName);
     }
 }

@@ -43,7 +43,9 @@ namespace WebFastFoodRestaurantApp.Infrastructure
                 new TypeFood{TypeFoodName="Vegeterians"},
                 new TypeFood{TypeFoodName="Meat"},
                 new TypeFood{TypeFoodName="Healthy"},
-                new TypeFood{TypeFoodName="Childish"}
+                new TypeFood{TypeFoodName="Childish"},
+                new TypeFood{TypeFoodName="Alcohol"},
+                new TypeFood{TypeFoodName="Alcohol-free"}
 
             });
             dataTypeFood.SaveChanges();

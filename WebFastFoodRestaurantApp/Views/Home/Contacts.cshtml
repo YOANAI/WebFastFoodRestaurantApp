@@ -1,0 +1,189 @@
+﻿<style>
+
+    /*For social icons*/
+    .social-icons {
+        margin: 0;
+        padding: 0;
+        font-size: 10px;
+    }
+
+    .social {
+        margin: 7px 7px 7px 0px;
+    }
+
+
+    .img {
+        position: relative;
+        width: 360px; /* can be omitted for a regular non-lazy image */
+        max-width: 100%;
+    }
+
+        .img img.images.hover {
+            position: absolute;
+            margin-top: 0px;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity .2s;
+        }
+
+    #contacts {
+        background-color: slategrey;
+    }
+
+    #contact2 {
+        letter-spacing: 3px;
+    }
+
+    .img:hover img.images.hover {
+        opacity: 1;
+    }
+
+
+
+    /*Get in touch*/
+    .cont {
+        background-color: floralwhite;
+    }
+
+
+
+    .get-in-touch {
+        max-width: 800px;
+        margin: 50px auto;
+        position: relative;
+    }
+
+        .get-in-touch .title {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 3.2em;
+            line-height: 48px;
+            padding-bottom: 48px;
+            
+        }
+
+    .contact-form .form-field {
+        position: relative;
+        margin: 32px 0;
+    }
+
+    .contact-form .input-text {
+        display: block;
+        width: 100%;
+        height: 36px;
+        border-width: 0 0 2px 0;
+        border-color: whitesmoke;
+        line-height: 26px;
+        font-weight: 400;
+        background-color: dimgrey;
+    }
+
+        .contact-form .input-text:focus {
+            outline: none;
+        }
+
+            .contact-form .input-text:focus + .label,
+            .contact-form .input-text.not-empty + .label {
+                -webkit-transform: translateY(-24px);
+                transform: translateY(-24px);
+            }
+
+    .contact-form .label {
+        position: absolute;
+        left: 20px;
+        bottom: 11px;
+        font-size: 18px;
+        line-height: 26px;
+        font-weight: 400;
+        color: black;
+        cursor: text;
+        transition: -webkit-transform .2s ease-in-out;
+        transition: transform .2s ease-in-out;
+        transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
+    }
+
+    .contact-form .submit-btn {
+        display: inline-block;
+        background-color: slategrey;
+        color: whitesmoke;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 16px;
+        padding: 8px 16px;
+        border: none;
+        width: 200px;
+        cursor: pointer;
+    }
+</style>
+
+<!--CONTACTS-->
+<div id="contacts">
+
+    <div class="container pt-5 pb-5">
+        <h1 class="text-center pb-4 display-4">Contacts</h1>
+        <div class="row">
+            <div class="col-sm-8">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2936.550632172056!2d23.03071431546415!3d42.607276779171116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14aacac3bbc30045%3A0x1282864432d70ccb!2z0J_QnNCTICLQpdGA0LjRgdGC0L4g0KHQvNC40YDQvdC10L3RgdC60Lgi!5e0!3m2!1sbg!2sbg!4v1678790345998!5m2!1sbg!2sbg" class="h-100 w-100" style="border:0;" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <!--ICONS-->
+            <div class="col-sm-4 mt-5 mb-5" id="contact2">
+                <div class="row mb-3 img">
+                    
+                     <span class="pl-3">Pernik, Bulgaria</span> 
+                </div>
+                <div class="row mb-3 img">
+                    
+                    <span class="pl-3">yoli555&commat;gmail.com</span> 
+                </div>
+                <div class="row mb-3 img">
+                   
+                   <span class="pl-3">(+359) 899 999 999</span>
+                </div>
+                <div class="row mb-3 img">
+                   <span class="pl-3"> Fast Food Restaurant</span>
+                </div>
+                
+                </div>
+        </div>
+    </div>
+</div>
+
+<!--Contact us form-->
+<div class="cont">
+    <section class="get-in-touch pt-5 pb-5 mt-0">
+        <h1 class="title">Get in touch</h1>
+        <form class="contact-form row" action="mailto:j.ivanova2018@pmg-pernik.com" method="post" enctype="text/plain">
+            <div class="form-field col-lg-6">
+                <input type="text" name="First Name" id="name" class="input-text js-input" required>
+                <label class="label">First Name</label>
+            </div>
+            <div class="form-field col-lg-6 ">
+                <input id="email" name="Email" class="input-text js-input" type="email" required>
+                <label class="label">E-mail</label>
+            </div>
+            <div class="form-field col-lg-6 ">
+                <input id="company" name="Last Name" class="input-text js-input" type="text" required>
+                <label class="label">Last Name</label>
+            </div>
+            <div class="form-field col-lg-6 ">
+                <input id="phone" name="Phone" class="input-text js-input" type="text" required>
+                <label class="label">Contact Number</label>
+            </div>
+            <div class="form-field col-lg-12">
+                <input id="message" name="Message" class="input-text js-input" type="text" required>
+                <label class="label">Message</label>
+            </div>
+            <div class="form-field col-lg-12">
+                <input class="submit-btn" type="submit" value="Submit">
+            </div>
+        </form>
+
+
+    </section>
+</div>

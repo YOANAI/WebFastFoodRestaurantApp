@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using WebFastFoodRestaurantApp.Models.Order;
 
 namespace WebFastFoodRestaurantApp.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class OrderController : Controller
     {
 
@@ -21,6 +23,7 @@ namespace WebFastFoodRestaurantApp.Controllers
             this.context = context;
         }
         // GET: OrderController
+        [AllowAnonymous]
         public ActionResult Index()
         {
             string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -44,6 +47,7 @@ namespace WebFastFoodRestaurantApp.Controllers
                 }).ToList();
             return View(orders);
         }
+        [AllowAnonymous]
         public IActionResult MyOrders(string searchString)
         {
             string currentUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -78,6 +82,7 @@ namespace WebFastFoodRestaurantApp.Controllers
         }
 
         //GET
+        [AllowAnonymous]
         public ActionResult Create(int productId, int quantity)
         {
             string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -104,65 +109,47 @@ namespace WebFastFoodRestaurantApp.Controllers
             };
             return View(orderForDb);
         }
-       
+
 
         // GET: OrderController/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int id)
         {
             return View();
         }
+        
 
-        // GET: OrderController/Create
+        // POST: OrderController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [AllowAnonymous]
         public ActionResult Create(OrderConfirmVM bindingModel)
         {
-            if(this.ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var user = this.context.Users.SingleOrDefault(u => u.Id == userId);
+                var user = context.Users.SingleOrDefault(u => u.Id == userId);
                 var product = this.context.Products.SingleOrDefault(x => x.Id == bindingModel.ProductId);
 
-                if(user == null || product == null || product.Quantity < bindingModel.Quantity || bindingModel.Quantity == 0)
+                if (user == null || product == null || bindingModel.Quantity < bindingModel.Quantity || bindingModel.Quantity == 0)
                 {
                     return this.RedirectToAction("Index", "Product");
                 }
                 Order orderForDb = new Order
                 {
-                    //Id = x.Id,
                     OrderDate = DateTime.UtcNow,
-                    ProductId = bindingModel.ProductId,                    
+                    ProductId = bindingModel.ProductId,
                     UserId = userId,
                     Quantity = bindingModel.Quantity,
                     Price = product.Price,
                     Discount = product.Discount,
                 };
-
                 product.Quantity -= bindingModel.Quantity;
-
                 this.context.Products.Update(product);
                 this.context.Orders.Add(orderForDb);
                 this.context.SaveChanges();
             }
             return this.RedirectToAction("Index", "Product");
-        }
-        
-            
-
-        // POST: OrderController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: OrderController/Edit/5
